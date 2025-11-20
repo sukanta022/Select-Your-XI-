@@ -1,6 +1,6 @@
 import React, { use } from 'react';
 import PlayerCard from '../PlayerCard/PlayerCard';
-const AvailablePlayers = ({allPlayers, availableBalance,setAvailableBalance}) => {
+const AvailablePlayers = ({allPlayers, availableBalance,setAvailableBalance,choosePlayers, setChoosesPlayers}) => {
     const allPlayersData = use(allPlayers)
     return (
         <div className='max-w-[1400px] mx-auto mt-10 grid grid-cols-3 gap-10'>
@@ -10,7 +10,9 @@ const AvailablePlayers = ({allPlayers, availableBalance,setAvailableBalance}) =>
                         key={player.id}  
                         player={player}
                         setAvailableBalance = {setAvailableBalance}
-                        availableBalance={availableBalance} >
+                        availableBalance={availableBalance} 
+                        setChoosesPlayers={setChoosesPlayers}
+                        choosePlayers={choosePlayers}>
                     </PlayerCard>))
             }  
         </div>

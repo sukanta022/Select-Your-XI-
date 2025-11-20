@@ -19,7 +19,7 @@ function App() {
   
   const[toggle, setToggle] = useState(true)
   const [availableBalance, setAvailableBalance]= useState(6000000)
-  
+  const [choosePlayers, setChoosesPlayers] = useState([])
   return (
     
     <>
@@ -38,9 +38,11 @@ function App() {
           <AvailablePlayers 
             setAvailableBalance = {setAvailableBalance}
             availableBalance={availableBalance} 
+            choosePlayers = {choosePlayers}
+            setChoosesPlayers = {setChoosesPlayers}
             allPlayers={allPlayers}>
           </AvailablePlayers>
-        </Suspense> : <SelectedPlayers></SelectedPlayers>
+        </Suspense> : <SelectedPlayers choosePlayers={choosePlayers}></SelectedPlayers>
         }
         
         

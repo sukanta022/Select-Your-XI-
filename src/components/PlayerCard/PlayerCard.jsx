@@ -4,7 +4,7 @@ import flagIcon from '../../assets/report.png'
 
 
 
-const PlayerCard = ({player,availableBalance,setAvailableBalance}) => {
+const PlayerCard = ({player,availableBalance,setAvailableBalance,choosePlayers,setChoosesPlayers}) => {
     
     const [isSelcted, setIsSelected] = useState(false)
 
@@ -12,6 +12,7 @@ const PlayerCard = ({player,availableBalance,setAvailableBalance}) => {
         if(availableBalance>=playerData.price){
             setAvailableBalance(availableBalance-playerData.price)
             setIsSelected(true)
+            setChoosesPlayers(...choosePlayers, playerData)
         }
         else{
             alert("Not enough money")
