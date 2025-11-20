@@ -13,13 +13,18 @@ const allPlayersPromise = async () => {
   return data.json();
 }
 
+const allPlayers = allPlayersPromise()
+
 function App() {
-  const allPlayers = allPlayersPromise()
-  const[toggle, setToggle] = useState(false)
+  
+  const[toggle, setToggle] = useState(true)
+  const [availableBalance, setAvailableBalance]= useState(6000000)
+  
   return (
+    
     <>
       <div>
-        <Navbar></Navbar>
+        <Navbar availableBalance={availableBalance} ></Navbar>
         <Banner></Banner>
         <div className='max-w-[1400px] mx-auto mt-10 flex justify-between items-center'>
           <p className='text-2xl font-bold'>{toggle?"Available Players":"Selected Players"}</p>
@@ -30,7 +35,11 @@ function App() {
         </div>
         {
           toggle ? <Suspense fallback={<span class="loading loading-spinner loading-lg"></span>}>
-          <AvailablePlayers allPlayers={allPlayers}></AvailablePlayers>
+          <AvailablePlayers 
+            setAvailableBalance = {setAvailableBalance}
+            availableBalance={availableBalance} 
+            allPlayers={allPlayers}>
+          </AvailablePlayers>
         </Suspense> : <SelectedPlayers></SelectedPlayers>
         }
         
