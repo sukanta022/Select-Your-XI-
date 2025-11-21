@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import userIcon from '../../assets/user.png'
 import flagIcon from '../../assets/report.png'
+import { toast } from 'react-toastify';
 
 
 
@@ -8,14 +9,18 @@ const PlayerCard = ({player,availableBalance,setAvailableBalance,choosePlayers,s
     
     const [isSelcted, setIsSelected] = useState(false)
 
-    const handlePlayer = (playerData) => {
-        if(availableBalance>=playerData.price){
-            setAvailableBalance(availableBalance-playerData.price)
+    const handlePlayer = () => {
+        if(availableBalance>=player.price && choosePlayers.length<6){
+            setAvailableBalance(availableBalance-player.price)
             setIsSelected(true)
-            setChoosesPlayers(...choosePlayers, playerData)
+            setChoosesPlayers([...choosePlayers, player]);
         }
         else{
-            alert("Not enough money")
+            if (choosePlayers.length === 6) {
+            toast("Player limit exceeded!");
+        } else {
+            toast("Not enough money");
+        }
         }
         
     }
@@ -60,7 +65,7 @@ const PlayerCard = ({player,availableBalance,setAvailableBalance,choosePlayers,s
                             <p className='font-bold'>Price: <span>{player.price}</span>$</p>
                             <button 
                                 className="btn pt-1 pb-2 pl-2 pr-2" 
-                                onClick={() => handlePlayer(player)}
+                                onClick={handlePlayer}
                                 disabled={isSelcted}>
                                     Choose player
                             </button>
