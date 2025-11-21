@@ -19,7 +19,7 @@ const allPlayers = allPlayersPromise()
 function App() {
   
   const[toggle, setToggle] = useState(true)
-  const [availableBalance, setAvailableBalance]= useState(6000000+550000+500000)
+  const [availableBalance, setAvailableBalance]= useState(6000000+500000+300000)
   const [choosePlayers, setChoosesPlayers] = useState([])
 
   const handleRemove= (p) => {
@@ -34,13 +34,30 @@ function App() {
     <>
         <Navbar availableBalance={availableBalance} ></Navbar>
         <Banner></Banner>
-        <div className='max-w-[1400px] mx-auto mt-10 flex justify-between items-center'>
-          <p className='text-2xl font-bold'>{toggle?"Available Players":`Selected Players (${choosePlayers.length}/6)`}</p>
-          <div className='flex '>
-            <button className={`btn rounded-l-xl border-r-0 ${toggle && "bg-[#E7FE29]"}`} onClick={()=> setToggle(true)}>Available</button>
-            <button className={`btn rounded-r-xl border-l-0 ${toggle || "bg-[#E7FE29]"}`} onClick={()=> setToggle(false)}>Selected (<span>{choosePlayers.length}</span>)</button>
-          </div>
+        <div className="max-w-[1400px] mx-auto mt-10 flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 text-center sm:text-left">
+  
+            <p className="text-2xl font-bold">
+              {toggle ? "Available Players" : `Selected Players (${choosePlayers.length}/6)`}
+            </p>
+
+            <div className="flex justify-center">
+              <button 
+                className={`btn rounded-l-xl border-r-0 ${toggle && "bg-[#E7FE29]"}`} 
+                onClick={() => setToggle(true)}
+              >
+                Available
+              </button>
+
+              <button 
+                className={`btn rounded-r-xl border-l-0 ${!toggle && "bg-[#E7FE29]"}`} 
+                onClick={() => setToggle(false)}
+              >
+                Selected (<span>{choosePlayers.length}</span>)
+              </button>
+            </div>
+
         </div>
+
         {
           toggle ? <Suspense fallback={<span class="loading loading-spinner loading-lg"></span>}>
           <AvailablePlayers 
