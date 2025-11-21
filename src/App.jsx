@@ -5,6 +5,7 @@ import Navbar from './components/Navbar/Navbar'
 import AvailablePlayers from './components/AvailablePlayers/AvailablePlayers'
 import SelectedPlayers from './components/SelectedPlayers/SelectedPlayers'
 import { ToastContainer} from 'react-toastify';
+import Footer from './components/Footer/Footer'
 
 
 // const allPlayersPromise = fetch('/players.json').then(res => res.json())
@@ -31,7 +32,6 @@ function App() {
   return (
     
     <>
-      <div>
         <Navbar availableBalance={availableBalance} ></Navbar>
         <Banner></Banner>
         <div className='max-w-[1400px] mx-auto mt-10 flex justify-between items-center'>
@@ -53,8 +53,7 @@ function App() {
         </Suspense> : <SelectedPlayers handleRemove={handleRemove} choosePlayers={choosePlayers}></SelectedPlayers>
         }
         
-        
-      </div>
+        <Footer></Footer>
       <ToastContainer/>
     </>
   )
