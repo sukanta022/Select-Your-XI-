@@ -14,6 +14,7 @@ const PlayerCard = ({player,availableBalance,setAvailableBalance,choosePlayers,s
             setAvailableBalance(availableBalance-player.price)
             setIsSelected(true)
             setChoosesPlayers([...choosePlayers, player]);
+            toast("Player added")
         }
         else{
             if (choosePlayers.length === 6) {
